@@ -47,8 +47,7 @@ const MarkerWithInfoWindow = ({ lat, lng }: Position) => {
       >
         <Pin background={"black"} borderColor={"white"} glyphColor={"white"} />
       </AdvancedMarker>
-
-      {infoWindowShown && (
+      {infoWindowShown && marker && (
         <InfoWindowComponent
           anchor={marker}
           onClose={handleClose}
