@@ -1,5 +1,6 @@
 import {
   AdvancedMarker,
+  Pin,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
 import { useCallback, useState } from "react";
@@ -43,7 +44,9 @@ const MarkerWithInfoWindow = ({ lat, lng }: Position) => {
         ref={markerRef}
         position={{ lat, lng }}
         onClick={handleMarkerClick}
-      />
+      >
+        <Pin background={"black"} borderColor={"white"} glyphColor={"white"} />
+      </AdvancedMarker>
 
       {infoWindowShown && (
         <InfoWindowComponent
