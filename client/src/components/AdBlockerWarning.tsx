@@ -14,7 +14,9 @@ const AdBlockerWarning = () => {
   useEffect(() => {
     const checkGoogleMapsAPI = async () => {
       try {
-        const response = await fetch("https://maps.googleapis.com/maps/api/js");
+        const response = await fetch(
+          "https://maps.googleapis.com/maps/api/mapsjs/gen_204?csp_test=true"
+        );
         if (!response.ok) throw new Error("Blocked by ad blocker");
       } catch (error) {
         console.error("Google Maps API blocked:", error);
