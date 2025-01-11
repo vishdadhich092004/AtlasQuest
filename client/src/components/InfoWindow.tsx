@@ -1,4 +1,7 @@
 import { InfoWindow } from "@vis.gl/react-google-maps";
+import { Loader2 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface InfoWindowProps {
   anchor: google.maps.marker.AdvancedMarkerElement | null;
@@ -7,6 +10,7 @@ interface InfoWindowProps {
   error?: string | null;
   location?: string;
 }
+
 function InfoWindowComponent({
   anchor,
   onClose,
@@ -16,20 +20,44 @@ function InfoWindowComponent({
 }: InfoWindowProps) {
   return (
     <InfoWindow anchor={anchor} onClose={onClose}>
-      <div className="p-4">
+      <Card className="w-[300px] border-none shadow-none">
         {isLoading ? (
-          <p className="text-gray-600">Loading...</p>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-center space-x-2">
+              <Loader2 className="h-4 w-4 animate-spin text-blue-500" />
+              <p className="text-sm text-muted-foreground">
+                Fetching location data...
+              </p>
+            </div>
+          </CardContent>
         ) : error ? (
-          <p className="text-red-500">{error}</p>
+          <Alert variant="destructive" className="border-none">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
         ) : location ? (
           <>
-            <h2 className="text-lg font-semibold mb-2">Location Details</h2>
-            <p className="font-medium">{location}</p>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg font-semibold text-primary">
+                Location Details
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">Address</p>
+                <p className="text-sm font-medium">{location}</p>
+              </div>
+            </CardContent>
           </>
         ) : (
-          <p className="text-gray-600">No location data available</p>
+          <CardContent className="p-4">
+            <div className="flex items-center justify-center">
+              <p className="text-sm text-muted-foreground">
+                No location data available
+              </p>
+            </div>
+          </CardContent>
         )}
-      </div>
+      </Card>
     </InfoWindow>
   );
 }

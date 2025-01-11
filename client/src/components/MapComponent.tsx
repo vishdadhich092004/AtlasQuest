@@ -19,6 +19,8 @@ function MapComponent({ mapCoordinates }: MapComponentProps) {
         defaultZoom={4}
         gestureHandling={"greedy"}
         mapId={mapId}
+        fullscreenControl={false}
+        streetViewControl={false}
       >
         {mapCoordinates.map((location) => (
           <MarkerWithInfoWindow
