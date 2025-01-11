@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Coordinate, LatLng } from "@/types";
 import MapComponent from "./MapComponent";
 import InputCoordinates from "./InputCoordinates";
+import JsonInput from "./JsonInput";
 import { US_BOUNDS } from "@/services/constants";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const InputWithMap = () => {
   const [coordinates, setCoordinates] = useState<LatLng[]>([
@@ -108,16 +110,48 @@ const InputWithMap = () => {
     }
   };
 
+  const handleJsonSubmit = (validCoordinates: Coordinate[]) => {
+    setMapCoordinates(validCoordinates);
+    // Update form inputs to match JSON input
+    setCoordinates(
+      validCoordinates.map((coord) => ({
+        id: crypto.randomUUID(),
+        lat: coord.latitude.toString(),
+        lng: coord.longitude.toString(),
+      }))
+    );
+    setValidationErrors({});
+  };
+
   return (
     <div className="flex gap-4 p-4 h-screen">
-      <InputCoordinates
-        coordinates={coordinates}
-        add={addNewCoordinate}
-        remove={removeCoordinate}
-        update={updateCoordinate}
-        handleSubmit={handleSubmit}
-        validationErrors={validationErrors}
-      />
+      <div className="w-1/3">
+        <Tabs defaultValue="form" className="w-full">
+          <TabsList className="w-full">
+            <TabsTrigger value="form" className="flex-1">
+              Form Input
+            </TabsTrigger>
+            <TabsTrigger value="json" className="flex-1">
+              JSON Input
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="form">
+            <InputCoordinates
+              coordinates={coordinates}
+              add={addNewCoordinate}
+              remove={removeCoordinate}
+              update={updateCoordinate}
+              handleSubmit={handleSubmit}
+              validationErrors={validationErrors}
+            />
+          </TabsContent>
+
+          <TabsContent value="json">
+            <JsonInput onSubmit={handleJsonSubmit} />
+          </TabsContent>
+        </Tabs>
+      </div>
       <MapComponent mapCoordinates={mapCoordinates} />
     </div>
   );

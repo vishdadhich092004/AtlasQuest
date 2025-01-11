@@ -25,7 +25,7 @@ function InputCoordinates({
   validationErrors,
 }: InputCoordinatesProps) {
   return (
-    <Card className="w-96">
+    <Card>
       <CardHeader>
         <CardTitle>Enter US Coordinates</CardTitle>
       </CardHeader>
