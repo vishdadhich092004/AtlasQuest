@@ -31,3 +31,9 @@ export interface GeocodingResponse {
   };
   status: string;
 }
+
+export interface LatLng {
+  id: string;
+  lat: string;
+  lng: string;
+}
