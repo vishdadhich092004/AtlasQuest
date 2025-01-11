@@ -18,7 +18,6 @@ function InfoWindowComponent({
   error,
   location,
 }: InfoWindowProps) {
-  console.log(location);
   return (
     <InfoWindow anchor={anchor} onClose={onClose}>
       <Card className="w-[300px] border-none shadow-none">

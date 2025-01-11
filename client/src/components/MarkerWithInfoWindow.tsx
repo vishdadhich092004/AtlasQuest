@@ -41,6 +41,7 @@ const MarkerWithInfoWindow = ({ lat, lng }: Position) => {
   return (
     <>
       <AdvancedMarker
+        key={lat + lng}
         ref={markerRef}
         position={{ lat, lng }}
         onClick={handleMarkerClick}
@@ -49,6 +50,7 @@ const MarkerWithInfoWindow = ({ lat, lng }: Position) => {
       </AdvancedMarker>
       {infoWindowShown && marker && (
         <InfoWindowComponent
+          key={location}
           anchor={marker}
           onClose={handleClose}
           isLoading={loading}
