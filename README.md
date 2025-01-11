@@ -2,7 +2,10 @@
 
 A React-based web application that allows users to plot and visualize coordinates within the continental United States using Google Maps. The application supports both form-based and JSON input methods, with real-time validation and reverse geocoding features.
 
+[![Deployment Status](https://img.shields.io/badge/deployment-live-success)](https://atlas-quest.vercel.app)
+
 ## Table of Contents
+- [Component Architecture](#component-architecture)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -10,10 +13,37 @@ A React-based web application that allows users to plot and visualize coordinate
 - [Usage](#usage)
   - [Form Input](#form-input)
   - [JSON Input](#json-input)
-- [Component Architecture](#component-architecture)
 - [Validation](#validation)
 - [Contributing](#contributing)
-- [License](#license)
+
+## Component Architecture
+
+```mermaid
+flowchart LR
+    subgraph Input
+        A[User Input] --> B{Input Type}
+        B --> C[Form Input]
+        B --> D[JSON Input]
+        C --> E[Validation]
+        D --> E
+    end
+
+    subgraph Processing
+        E --> F{Valid?}
+        F -->|No| G[Error Feedback]
+        G -.-> B
+        F -->|Yes| H[Update Coordinates]
+    end
+
+    subgraph Map
+        H --> I[Render Markers]
+        I --> J[Location Details]
+    end
+
+    style Input fill:#fafafa,stroke:#333
+    style Processing fill:#fafafa,stroke:#333
+    style Map fill:#fafafa,stroke:#333
+```
 
 ## Features
 
@@ -83,34 +113,7 @@ Submit coordinates in the following format:
 ]
 ```
 
-## Component Architecture
 
-```mermaid
-flowchart LR
-    subgraph Input
-        A[User Input] --> B{Input Type}
-        B --> C[Form Input]
-        B --> D[JSON Input]
-        C --> E[Validation]
-        D --> E
-    end
-
-    subgraph Processing
-        E --> F{Valid?}
-        F -->|No| G[Error Feedback]
-        G -.-> B
-        F -->|Yes| H[Update Coordinates]
-    end
-
-    subgraph Map
-        H --> I[Render Markers]
-        I --> J[Location Details]
-    end
-
-    style Input fill:#fafafa,stroke:#333
-    style Processing fill:#fafafa,stroke:#333
-    style Map fill:#fafafa,stroke:#333
-```
 ## Validation
 
 The application enforces the following validation rules:
@@ -120,6 +123,10 @@ The application enforces the following validation rules:
 - All coordinates must be valid numbers
 - JSON input must follow the specified format
 - At least one coordinate pair is required
+
+## Live Demo
+
+The API is deployed and accessible at: [https://crypto-metrics-teal.vercel.app](https://atlas-quest.vercel.app)
 
 ## Contributing
 
