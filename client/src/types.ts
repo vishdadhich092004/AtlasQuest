@@ -26,8 +26,8 @@ export interface AddressComponent {
 }
 
 export interface GeocodingResponse {
-  results: {
-    address_components: AddressComponent[];
-  }[];
+  plus_code: {
+    compound_code: string;
+  };
   status: string;
 }

@@ -5,10 +5,7 @@ interface InfoWindowProps {
   onClose: () => void;
   isLoading: boolean;
   error?: string | null;
-  location: {
-    city: string;
-    state: string;
-  };
+  location?: string;
 }
 function InfoWindowComponent({
   anchor,
@@ -27,12 +24,7 @@ function InfoWindowComponent({
         ) : location ? (
           <>
             <h2 className="text-lg font-semibold mb-2">Location Details</h2>
-            <p className="mb-1">
-              <span className="font-medium">City:</span> {location.city}
-            </p>
-            <p>
-              <span className="font-medium">State:</span> {location.state}
-            </p>
+            <p className="font-medium">{location}</p>
           </>
         ) : (
           <p className="text-gray-600">No location data available</p>

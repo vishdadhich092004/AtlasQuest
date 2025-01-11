@@ -11,10 +11,7 @@ import InfoWindowComponent from "./InfoWindow";
 const MarkerWithInfoWindow = ({ lat, lng }: Position) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
-  const [location, setLocation] = useState<{
-    city: string;
-    state: string;
-  } | null>(null);
+  const [location, setLocation] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
