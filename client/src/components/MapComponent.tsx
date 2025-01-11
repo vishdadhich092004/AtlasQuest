@@ -1,4 +1,5 @@
-import { AdvancedMarker, Map } from "@vis.gl/react-google-maps";
+import { Map } from "@vis.gl/react-google-maps";
+import MarkerWithInfoWindow from "./MarkerWithInfoWindow";
 
 const defaultCenter = {
   lat: 39.8283,
@@ -22,8 +23,12 @@ function MapComponent() {
       mapId={mapId}
     >
       {coordinates.map((location) => (
-        <AdvancedMarker
-          position={{ lat: location.latitude, lng: location.longitude }}
+        // <AdvancedMarker
+        //   position={{ lat: location.latitude, lng: location.longitude }}
+        // />
+        <MarkerWithInfoWindow
+          lat={location.latitude}
+          lng={location.longitude}
         />
       ))}
     </Map>
