@@ -135,7 +135,7 @@ The application enforces the following validation rules:
 
 ## Live Demo
 
-The API is deployed and accessible at: [https://crypto-metrics-teal.vercel.app](https://atlas-quest.vercel.app)
+The API is deployed and accessible at: [atlast-quest](https://atlas-quest.vercel.app)
 
 ## Contributing
 
